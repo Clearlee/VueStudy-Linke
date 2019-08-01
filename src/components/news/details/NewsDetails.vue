@@ -96,12 +96,17 @@
         ></comment-dialog>
       </div>
     </transition>
+
+    <div class="loading-wrapper" v-show="loading">
+        <loading-view></loading-view>
+    </div>
   </div>
 </template>
 
 <script>
 import TopBar from "common/topbar/TopBar.vue";
 import Scroll from "common/Scroll.vue";
+import LoadingView from 'common/loading/loading.vue'
 import CommentList from "common/commentlist/CommentList.vue";
 import CommentDialog from "common/CommentDialog.vue";
 import { findArticleDetailById, pageArticleComment } from "js/news/news.js";
@@ -111,9 +116,11 @@ export default {
     TopBar,
     Scroll,
     CommentList,
-    CommentDialog
+    CommentDialog,
+    LoadingView
   },
   activated() {
+    this.loading = true;
     this.$refs.scroll.scrollTo(0, 0);
     this.id = this.$route.params.id;
     this.loadData(this.id);
@@ -125,7 +132,8 @@ export default {
       allComments: [],
       showDialog: false,
       parentId: 0,
-      id: 0
+      id: 0,
+      loading:true
     };
   },
   methods: {
@@ -140,6 +148,7 @@ export default {
           // this.$nextTick(() => {
           //   this.$refs.scroll.refresh();
           // });
+          this.loading = false;
           setTimeout(() => {
             this.$refs.scroll.refresh();
           }, 2500);
@@ -183,6 +192,15 @@ export default {
   background white
   z-index 101
   height 100%
+  .loading-wrapper
+    position fixed
+    width 100%
+    height 100%
+    background white
+    z-index 999
+    display flex
+    align-items center
+    justify-content center
   .dialog-enter, .dialog-leave-to
     transform translate3d(0, 100%, 0)
   .dialog-enter-active, .dialog-leave-active
