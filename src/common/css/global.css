@@ -1,0 +1,6 @@
+.my-bullet-active {
+  background: #F97200 !important;
+  opacity: 1 !important;
+  width: .4rem !important;
+  border-radius: 20px !important
+}
