@@ -23,4 +23,4 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 1.0版本
 app首页，资讯详情页，评论列表页
 
-![image](https://github.com/Clearlee/Flutter_Demo/blob/master/src/screenshots/screenshot_1_1.gif )
+![image](https://github.com/Clearlee/VueStudy-Linke/blob/master/src/screenshots/screenshot_1_1.gif )
