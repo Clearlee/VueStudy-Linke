@@ -153,10 +153,13 @@
           >
             <news-list
               ref="newslist"
+              v-if="index!==1"
               :categorayId="item.id"
               @dataChange='handleDataChange(item.id)'
               @goDetails='goDetails'
             ></news-list>
+
+            <fast-news-list v-if="index===1"></fast-news-list>
           </swiper-slide>
 
         </swiper>
@@ -166,6 +169,7 @@
 </template>
 
 <script>
+import FastNewsList from "../fastnews/FastNewsList.vue";
 import BScoll from "better-scroll";
 import NewsList from "./NewsList.vue";
 import VerticalView from "common/VerticalView.vue";
@@ -193,13 +197,15 @@ export default {
   },
   components: {
     NewsList,
-    VerticalView
+    VerticalView,
+    FastNewsList,
   },
   mounted() {
     loadCategorysData().then(res => {
       if (res.data && res.data.success) {
         let arr = [];
         arr = res.data.data;
+        arr.unshift({ id: 2, name: "快讯" });
         arr.unshift({ id: 1, name: "全部" });
         this.categorys = arr;
         this.$nextTick(() => {
