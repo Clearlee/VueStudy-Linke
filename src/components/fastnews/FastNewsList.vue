@@ -11,6 +11,7 @@
         v-for="(item,key) in data.data"
         :key="key"
         class="fast-news-item"
+        @click="handleItemClick(item,item.id)"
       >
         <div class="news-content">
           <div class="time-wrapper">
@@ -43,6 +44,7 @@
 <script>
 import FastNewsItem from "./FastNewsItem.vue";
 import { selectPageFlashNews } from "js/news/fastnews.js";
+import {mapActions} from 'vuex'
 export default {
   name: "FastNewsList",
   components: {
@@ -99,9 +101,18 @@ export default {
         date.getDate() +
         "日"
       );
-    }
-  },
-  computed: {}
+    },
+    handleItemClick(data,id) {
+      // this.$emit("goFastNewsDetails", id);
+      this.saveCurrentData(data);
+      this.$router.push({
+        path: `/fastnewsdetail/${id}`
+      });
+    },
+    ...mapActions([
+      'saveCurrentData',
+    ])
+  }
 };
 </script>
 

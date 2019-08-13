@@ -6,6 +6,7 @@ import Msg from '@/components/msg/msg'
 import News from '@/components/news/News'
 import NewsComment from '@/components/news/comment/NewsComment'
 import NewsDetail from '@/components/news/details/NewsDetails'
+import FastNewsDetail from '@/components/fastnews/FastNewsDetails'
 import UserInfo from '@/components/userinfo/UserInfo'
 import MsgRecommend from '@/components/msg/recommend/Recommend'
 import MsgDynamic from '@/components/msg/dynamic/MsgDynamic'
@@ -32,6 +33,10 @@ export default new Router({
         {
           path: 'newsdetail/:id',
           component: NewsDetail
+        },
+        {
+          path: 'fastnewsdetail/:id',
+          component: FastNewsDetail
         },
         {
           path: 'newscomment/:id',

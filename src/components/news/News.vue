@@ -159,7 +159,10 @@
               @goDetails='goDetails'
             ></news-list>
 
-            <fast-news-list v-if="index===1"></fast-news-list>
+            <fast-news-list
+              v-if="index===1"
+              @goFastNewsDetails='goFastNewsDetails'
+            ></fast-news-list>
           </swiper-slide>
 
         </swiper>
@@ -198,7 +201,7 @@ export default {
   components: {
     NewsList,
     VerticalView,
-    FastNewsList,
+    FastNewsList
   },
   mounted() {
     loadCategorysData().then(res => {
@@ -227,6 +230,11 @@ export default {
     goDetails(id) {
       this.$router.push({
         path: `/newsdetail/${id}`
+      });
+    },
+    goFastNewsDetails(id) {
+      this.$router.push({
+        path: `/fastnewsdetail/${id}`
       });
     },
     handleDataChange(categorayId) {

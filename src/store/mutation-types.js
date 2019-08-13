@@ -1,0 +1,1 @@
+export const SET_FAST_NEWS = 'SET_FAST_NEWS';
