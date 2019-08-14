@@ -203,7 +203,14 @@ export default {
     VerticalView,
     FastNewsList
   },
+  created(){
+    console.log("created");
+  },
+  activated(){
+    console.log("activated");
+  },
   mounted() {
+    console.log("mounted");
     loadCategorysData().then(res => {
       if (res.data && res.data.success) {
         let arr = [];
@@ -219,6 +226,7 @@ export default {
     });
   },
   destroyed() {
+    console.log("destroyed");
     window.removeEventListener("scroll", this._handleScroll);
   },
   computed: {
@@ -284,7 +292,13 @@ export default {
     },
     slideChanged() {
       this.currentIndex = this.swiper.realIndex;
-      this.$refs.newslist[this.currentIndex].refreshSwiper();
+      let index;
+      if (this.currentIndex > 1) {
+        index = this.currentIndex - 1;
+      } else if (this.currentIndex === 0) {
+        index = this.currentIndex;
+      }
+      if (this.currentIndex !== 1) this.$refs.newslist[index].refreshSwiper();
     }
   },
   watch: {
